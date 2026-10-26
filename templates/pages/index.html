@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}Cartelera — Cine Paradiso{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <h1>Revive los <span>Clásicos</span> en Pantalla Grande</h1>
+    <p>Una experiencia cinematográfica diferente. Las mejores películas de la historia en nuestras 3 sucursales.</p>
+    <a href="#cartelera" class="btn btn-primary">Ver Cartelera</a>
+</section>
+
+<section id="cartelera" class="container">
+    <h2 class="section-title">Películas en Cartelera</h2>
+
+    {% if peliculas %}
+    <div class="movie-grid">
+        {% for p in peliculas %}
+        <div class="movie-card">
+            <img src="{{ p.poster_url if p.poster_url else 'https://via.placeholder.com/300x450' }}" alt="{{ p.titulo }}" class="movie-poster">
+            <div class="movie-body">
+                <h3 class="movie-title">{{ p.titulo }}</h3>
+                <div class="movie-meta">
+                    <span class="badge badge-red">{{ p.clasificacion }}</span>
+                    <span class="badge">{{ p.duracion_min }} min</span>
+                    <span class="badge">{{ p.genero }}</span>
+                </div>
+                <a href="{{ url_for('main.pelicula_detalle', id_pelicula=p.id_pelicula) }}" class="btn btn-primary">Comprar Entradas</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p style="color: var(--text-secondary); text-align: center; padding: 2rem;">Cargando cartelera o no hay películas disponibles en este momento...</p>
+    {% endif %}
+</section>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ pelicula.titulo }} — Cine Paradiso{% endblock %}
+
+{% block content %}
+<div class="container" style="padding-top: 3rem;">
+    <div style="display: flex; gap: 2.5rem; flex-wrap: wrap;">
+        <div>
+            <img src="{{ pelicula.poster_url if pelicula.poster_url else 'https://via.placeholder.com/300x450' }}" alt="{{ pelicula.titulo }}" style="border-radius: 8px; width: 280px; border: 1px solid var(--border-color);">
+        </div>
+        <div style="flex: 1; min-width: 300px;">
+            <h1 style="font-size: 2.2rem; font-weight: 800; margin-bottom: 0.5rem;">{{ pelicula.titulo }}</h1>
+            <div style="display: flex; gap: 0.5rem; margin-bottom: 1.5rem;">
+                <span class="badge badge-red">{{ pelicula.clasificacion }}</span>
+                <span class="badge">{{ pelicula.duracion_min }} min</span>
+                <span class="badge">{{ pelicula.genero }}</span>
+            </div>
+            <p style="color: var(--text-secondary); margin-bottom: 2rem; font-size: 1.1rem;">{{ pelicula.sinopsis }}</p>
+            
+            <a href="{{ url_for('main.index') }}" class="btn btn-outline">&larr; Volver a la Cartelera</a>
+            <button class="btn btn-primary" style="margin-left: 1rem;">Seleccionar Función</button>
+        </div>
+    </div>
+</div>
+{% endblock %}

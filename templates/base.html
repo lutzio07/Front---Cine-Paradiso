@@ -1,22 +1,23 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-    <title>Cine Paradiso</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Cine Paradiso - Clásicos en Pantalla Grande{% endblock %}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
-
 <body>
-    <header>
-        <h1>Cine Paradiso</h1>
-    </header>
-    <main>
-        {% block content %}
-        {% endblock %}
-    </main>
-    <footer>
-        <p>&copy; 2026 Cine Paradiso</p>
-    </footer>
-</body>
 
+    <!-- NAVBAR -->
+    {% include 'components/navbar.html' %}
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- FOOTER -->
+    {% include 'components/footer.html' %}
+
+</body>
 </html>
