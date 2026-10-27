@@ -1,10 +1,10 @@
-from flask import Flask, render_template, jsonify, request
+from flask import Flask
+from config import Config
+from routes.main_routes import main_bp
 
-app = Flask(__name__)
+def create_app():
+    app = Flask(__name__)
+    app.config.from_object(Config)
+    app.register_blueprint(main_bp)
+    return app
 
-@app.route('/')
-def index():
-    return render_template('index.html')
-
-if __name__ == '__main__':
-    app.run(port=5001, debug=True)

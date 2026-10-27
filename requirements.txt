@@ -1,7 +1,3 @@
-# Configuración del Frontend Cine Paradiso
-PORT=5001
-FLASK_ENV=development
-SECRET_KEY=clave_secreta_frontend_paradiso_2026
-
-# URL del Backend API (comunicación serv-to-serv vía Python requests)
-BACKEND_URL=http://localhost:5000/api
+Flask
+requests
+python-dotenv
