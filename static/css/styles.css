@@ -225,11 +225,6 @@ a {
     white-space: nowrap;
 }
 
-.badge-red {
-    background-color: rgba(229, 9, 20, 0.2);
-    color: var(--accent-red);
-}
-
 .badge-muted{
     background-color: rgba(176, 184, 196, 0.12);
     color: rgba(138, 147, 163, 1);
