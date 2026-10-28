@@ -237,6 +237,19 @@ a {
     flex-wrap: wrap;
 }
 
+.movie-aviso {
+    border: 1px dashed var(--accent-red);
+    border-radius: 6px;
+    padding: 0.6rem;
+    background-color: rgba(229, 9, 20, 0.08);
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    margin-bottom: 0.8rem;
+    font-family: 'Roboto Slab', serif;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
 .badge {
     background-color: rgba(255, 255, 255, 0.1);
     color: var(--text-secondary);
@@ -244,12 +257,6 @@ a {
     border-radius: 4px;
     font-size: 0.75rem;
     font-weight: 600;
-    white-space: nowrap;
-}
-
-.badge-muted{
-    background-color: rgba(176, 184, 196, 0.12);
-    color: rgba(138, 147, 163, 1);
     white-space: nowrap;
 }
 
