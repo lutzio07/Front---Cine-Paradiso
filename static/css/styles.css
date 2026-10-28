@@ -212,6 +212,7 @@ a {
     display: flex;
     gap: 0.5rem;
     margin-bottom: 0.8rem;
+    flex-wrap: wrap;
 }
 
 .badge {
@@ -221,11 +222,18 @@ a {
     border-radius: 4px;
     font-size: 0.75rem;
     font-weight: 600;
+    white-space: nowrap;
 }
 
 .badge-red {
     background-color: rgba(229, 9, 20, 0.2);
     color: var(--accent-red);
+}
+
+.badge-muted{
+    background-color: rgba(176, 184, 196, 0.12);
+    color: rgba(138, 147, 163, 1);
+    white-space: nowrap;
 }
 
 .movie-card .btn {

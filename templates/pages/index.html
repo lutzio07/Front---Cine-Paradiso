@@ -16,13 +16,16 @@
     <div class="movie-grid">
         {% for p in peliculas %}
         <div class="movie-card">
-            <img src="{{ p.poster_url if p.poster_url else 'https://via.placeholder.com/300x450' }}" alt="{{ p.titulo }}" class="movie-poster">
+            <img src="{{ p.url_poster if p.url_poster else 'https://via.placeholder.com/300x450' }}" alt="{{ p.titulo }}" class="movie-poster">
             <div class="movie-body">
                 <h3 class="movie-title">{{ p.titulo }}</h3>
                 <div class="movie-meta">
                     <span class="badge badge-red">{{ p.clasificacion }}</span>
-                    <span class="badge">{{ p.duracion_min }} min</span>
+                    <span class="badge">{{ p.duracion_minutos }} min</span>
                     <span class="badge">{{ p.genero }}</span>
+                    {% if not p.tiene_funciones_disponibles %}
+                        <span class=" badge badge-muted">sin funciones disponibles</span>
+                    {% endif %}
                 </div>
                 <a href="{{ url_for('main.pelicula_detalle', id_pelicula=p.id_pelicula) }}" class="btn btn-primary">Comprar Entradas</a>
             </div>
