@@ -16,19 +16,26 @@
     <div class="movie-grid">
         {% for p in peliculas %}
         <div class="movie-card">
-            <img src="{{ p.poster_url if p.poster_url else 'https://via.placeholder.com/300x450' }}" alt="{{ p.titulo }}" class="movie-poster">
+            <img src="{{ p.url_poster if p.url_poster else 'https://via.placeholder.com/300x450' }}" alt="{{ p.titulo }}" class="movie-poster">
             <div class="movie-body">
                 <h3 class="movie-title">{{ p.titulo }}</h3>
+                <p class="movie-id">ID: {{ p.id_pelicula }}</p>
                 <div class="movie-meta">
                     <span class="badge badge-red">{{ p.clasificacion }}</span>
-                    <span class="badge">{{ p.duracion_min }} min</span>
+                    <span class="badge">{{ p.duracion_minutos }} min</span>
                     <span class="badge">{{ p.genero }}</span>
                 </div>
-                <a href="{{ url_for('main.pelicula_detalle', id_pelicula=p.id_pelicula) }}" class="btn btn-primary">Comprar Entradas</a>
+                <p class="movie-sinopsis">{{ p.sinopsis }}</p>
+                {% if not p.tiene_funciones_disponibles %}
+                    <div class="movie-aviso" role="alert">🕒 Sin funciones disponibles</div>
+                {% endif %}
+                <a href="{{ url_for('main.pelicula_detalle', id_pelicula=p.id_pelicula) }}" class="btn {{ 'btn-primary' if p.tiene_funciones_disponibles else 'btn-outline' }}">{{'Ver funciones y horarios' if p.tiene_funciones_disponibles else 'Ver ficha' }}</a>
             </div>
         </div>
         {% endfor %}
     </div>
+    {% elif error %}
+    <p style="mensaje-vacio": var(--text-secondary); text-align: center; padding: 2rem;">Ocurrió un error al cargar la cartelera. Por favor, intenta nuevamente más tarde.</p>
     {% else %}
     <p style="color: var(--text-secondary); text-align: center; padding: 2rem;">Cargando cartelera o no hay películas disponibles en este momento...</p>
     {% endif %}
