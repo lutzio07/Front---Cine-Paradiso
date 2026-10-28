@@ -238,11 +238,8 @@ a {
 .movie-sinopsis {
     color: var(--text-secondary);
     font-size: 0.9rem;
-    margin-bottom: 0.8rem;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
+    line-height: 1.4;
+    margin-bottom: 1rem;
 }
 
 .badge {
@@ -257,7 +254,7 @@ a {
 
 .badge-red {
     background-color: rgba(200,16,46,0.15);
-    font-family: var(--accent-red)
+    color: var(--accent-red)
 }
 .movie-card .btn {
     margin-top: auto;
@@ -276,8 +273,66 @@ a {
     font-size: 0.9rem;
 }
 
+/* DETALLE DE PELICULA - estils auxiliares */
+.detalle-header {
+    display:flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+@media (min-width: 768px) {
+    .detalle-header {
+        flex-direction: row;
+    }
+}
+
+.poster-grande {
+    width: 100%;
+    max-width: 300px;
+    border-radius: 0.75rem;
+    object-fit: cover;
+}
+.title-playfair {
+    font-family: var(--font-title);
+    font-size: 2.2rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+}
+
+.badges {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+.sinopsis-completa {
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin-top: 1rem;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+}
+
+.funciones-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.funcion-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 0.8rem;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.funcion-card.agotada { opacity:0.6; }
 @media (max-width: 640px) {
     .navbar {
+ 
         flex-direction: column;
         gap: 1rem;
         padding: 1rem;
@@ -314,3 +369,18 @@ a {
     }
 }
 
+.mensaje-vacio {
+    color: var(--text-secondary);
+    text-align: center;
+    padding: 2rem;
+}
+
+.no-funciones {
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+.btn-disabled {
+    pointer-events: none;
+    opacity: 0.5;
+}

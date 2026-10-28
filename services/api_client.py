@@ -54,3 +54,19 @@ def obtener_pelicula_por_id(id_pelicula):
         raise RuntimeError(response.get("message", "No se pudo obtener la película"))
 
     return response.get("data")
+
+def obtener_funciones(pelicula_id, sucursal=None, fecha=None):
+    params = {}
+    if sucursal:
+        params['sucursal'] = sucursal
+    if fecha:
+        params['fecha'] = fecha
+
+    response = get(f"/peliculas/{pelicula_id}/funciones", params=params)
+    if response.get("status") != "success":
+        raise RuntimeError(response.get("message", "No se pudieron obtener las funciones"))
+
+    funciones = response.get("data")
+    if not isinstance(funciones, list):
+        raise ValueError("La respuesta del backend no contiene una lista de funciones")
+    return funciones    

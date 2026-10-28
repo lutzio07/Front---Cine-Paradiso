@@ -19,6 +19,7 @@
             <img src="{{ p.url_poster if p.url_poster else 'https://via.placeholder.com/300x450' }}" alt="{{ p.titulo }}" class="movie-poster">
             <div class="movie-body">
                 <h3 class="movie-title">{{ p.titulo }}</h3>
+                <p class="movie-id">ID: {{ p.id_pelicula }}</p>
                 <div class="movie-meta">
                     <span class="badge badge-red">{{ p.clasificacion }}</span>
                     <span class="badge">{{ p.duracion_minutos }} min</span>
@@ -33,6 +34,8 @@
         </div>
         {% endfor %}
     </div>
+    {% elif error %}
+    <p style="mensaje-vacio": var(--text-secondary); text-align: center; padding: 2rem;">Ocurrió un error al cargar la cartelera. Por favor, intenta nuevamente más tarde.</p>
     {% else %}
     <p style="color: var(--text-secondary); text-align: center; padding: 2rem;">Cargando cartelera o no hay películas disponibles en este momento...</p>
     {% endif %}
