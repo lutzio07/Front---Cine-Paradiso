@@ -171,6 +171,28 @@ a {
     gap: 1.8rem;
 }
 
+@media (max-width: 640px) {
+    .navbar {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem;
+    }
+
+    .navbar-nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.75rem;
+    }
+
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .container {
+        padding: 1rem;
+    }
+}
+
 /* MOVIE CARD */
 .movie-card {
     background-color: var(--bg-card);
