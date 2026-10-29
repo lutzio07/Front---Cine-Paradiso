@@ -34,6 +34,27 @@
     </div>
 
     <h2 class="section-title">Funciones</h2>
+    <form method="GET" action="{{ url_for('main.pelicula_detalle', id_pelicula=pelicula.id_pelicula) }}" class="genre-filter">
+    <div class="filter-group">
+        <label for="sucursal-select">Sucursal:</label>
+        <select name="sucursal" id="sucursal-select" class="form-control">
+            <option value="">-- Todas las sucursales --</option>
+            <option value="1" {% if request.args.get('sucursal') == '1' %}selected{% endif %}>Sucursal 1</option>
+            <option value="2" {% if request.args.get('sucursal') == '2' %}selected{% endif %}>Sucursal 2</option>
+            <option value="3" {% if request.args.get('sucursal') == '3' %}selected{% endif %}>Sucursal 3</option>
+        </select>
+    </div>
+
+    <div class="filter-group">
+        <label for="fecha-input">Fecha:</label>
+        <input type="date" name="fecha" id="fecha-input" class="form-control" value="{{ request.args.get('fecha', '') }}">
+    </div>
+
+    <div class="filter-actions">
+        <button type="submit" class="btn btn-outline">Filtrar funciones</button>
+        <a href="{{ url_for('main.pelicula_detalle', id_pelicula=pelicula.id_pelicula) }}" class="btn btn-outline btn-secondary">Limpiar</a>
+    </div>
+</form>
 
     {% if funciones %}
         <div class="funciones-lista">

@@ -31,6 +31,7 @@ def index():
         generos_disponibles=generos,
         error=error,
         request=request,
+        page=page,
     )
 
 @main_bp.route("/pelicula/<int:id_pelicula>")

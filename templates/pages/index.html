@@ -64,15 +64,18 @@
         {% endfor %}
     </div>
     <div class="pagination">
-    {   % set current_page = request.args.get('page', 1, type=int) %}
-        {% if current_page > 1 %}
-            <a href="{{ url_for('main.index', genero=request.args.get('genero'), sucursal=request.args.get('sucursal'), fecha=request.args.get('fecha'), page=current_page-1) }}" class="btn btn-outline">Anterior</a>
-        {% endif %}
-        <span class="pagination-info">Pagina {{ current_page }}</span>
-        {%if peliculas|length == 0 %}
-            <a href="{{ url_for('main.index', genero=request.args.get('genero'), sucursal=request.args.get('sucursal'), fecha=request.args.get('fecha'), page=current_page+1) }}" class="btn btn-outline">Siguiente</a>
-        {% endif %}
-    </div>
+            {% set page_num = request.args.get('page', 1)|int %}
+            
+            {% if page_num > 1 %}
+                <a href="{{ url_for('main.index', genero=request.args.get('genero'), sucursal=request.args.get('sucursal'), fecha=request.args.get('fecha'), page=page_num-1) }}" class="btn btn-outline">Anterior</a>
+            {% endif %}
+            
+            <span class="pagination-info">Página {{ page_num }}</span>
+            
+            {% if peliculas|length > 0 %}
+                <a href="{{ url_for('main.index', genero=request.args.get('genero'), sucursal=request.args.get('sucursal'), fecha=request.args.get('fecha'), page=page_num+1) }}" class="btn btn-outline">Siguiente</a>
+            {% endif %}
+        </div>
     {% elif error %}
     <p class="mensaje-vacio">No pudimos conectar con el servidor.</p>
     {% else %}

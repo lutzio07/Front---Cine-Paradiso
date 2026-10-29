@@ -79,3 +79,4 @@ def obtener_funciones(pelicula_id, sucursal=None, fecha=None):
     if not isinstance(funciones, list):
         raise ValueError("La respuesta del backend no contiene una lista de funciones")
     return funciones    
+
