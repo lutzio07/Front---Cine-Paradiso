@@ -32,16 +32,25 @@ def post(endpoint, data=None, headers=None):
     return response.json()
 
 
-def obtener_peliculas():
-    response = get("/peliculas")
+def obtener_peliculas(genero=None, sucursal=None, fecha=None, page=1):
+    params = {}
+    if genero:
+        params["genero"] = genero
+    if sucursal:
+        params["sucursal"] = sucursal
+    if fecha:
+        params["fecha"] = fecha
+    params["page"] = page
+
+    response = get("/peliculas", params=params)
 
     if response.get("status") != "success":
         raise RuntimeError(response.get("message", "No se pudo obtener la cartelera"))
 
-    peliculas = response.get("data")
-    if not isinstance(peliculas, list):
-        raise ValueError("La respuesta del backend no contiene una lista de películas")
+    peliculas = response.get("data", [])
 
+    if not isistance(peliculas, list):
+        raise ValueError("La respuesta del backend no contiene una lista de películas")
     return peliculas
 
 
