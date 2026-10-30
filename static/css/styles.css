@@ -443,3 +443,57 @@ a {
     color: var(--text-secondary);
     font-weight: 600;
 }
+
+/* PERFIL DE CLIENTE */
+.perfil-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding-top: 2rem;
+    padding-bottom: 3rem;
+}
+
+.perfil-section {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.perfil-section h2 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.perfil-section p {
+    color: var(--text-secondary);
+    margin: 0.4rem 0;
+}
+
+.perfil-section p strong,
+.perfil-section li strong {
+    color: var(--text-primary);
+}
+
+.perfil-section ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.perfil-section li {
+    background-color: var(--bg-main);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    color: var(--text-secondary);
+}
+
+@media (max-width: 640px) {
+    .perfil-section {
+        padding: 1rem;
+    }
+}
