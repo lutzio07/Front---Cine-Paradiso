@@ -32,7 +32,7 @@ def post(endpoint, data=None, headers=None):
     return response.json()
 
 
-def obtener_peliculas(genero=None, sucursal=None, fecha=None, page=1):
+def obtener_peliculas(genero=None, sucursal=None, fecha=None, pagina=1, limite=None):
     params = {}
     if genero:
         params["genero"] = genero
@@ -40,7 +40,9 @@ def obtener_peliculas(genero=None, sucursal=None, fecha=None, page=1):
         params["sucursal"] = sucursal
     if fecha:
         params["fecha"] = fecha
-    params["page"] = page
+    params["pagina"] = pagina
+    if limite is not None:
+        params["limite"] = limite
 
     response = get("/peliculas", params=params)
 
@@ -49,7 +51,7 @@ def obtener_peliculas(genero=None, sucursal=None, fecha=None, page=1):
 
     peliculas = response.get("data", [])
 
-    if not isistance(peliculas, list):
+    if not isinstance(peliculas, list):
         raise ValueError("La respuesta del backend no contiene una lista de películas")
     return peliculas
 
@@ -80,3 +82,12 @@ def obtener_funciones(pelicula_id, sucursal=None, fecha=None):
         raise ValueError("La respuesta del backend no contiene una lista de funciones")
     return funciones    
 
+def obtener_sucursales():
+    response = get("/sucursales")
+    if response.get("status") != "success":
+        raise RuntimeError(response.get("message", "No se pudieron obtener las sucursales"))
+
+    sucursales = response.get("data")
+    if not isinstance(sucursales, list):
+        raise ValueError("La respuesta del backend no contiene una lista de sucursales")
+    return sucursales

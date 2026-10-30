@@ -25,11 +25,12 @@
         </div>
         <div class="filter-group">
             <label for="sucursal-select">Sucursal: </label>
-            <select name="sucursal" id="sucursal_select" class="form-control">
+            <select name="sucursal" id="sucursal-select" class="form-control">
                 <option value="">-- Todas las sucursales --</option>
-                <option value="1" {% if request.args.get('sucursal') == '1' %}selected{% endif %}>Sucursal 1</option>
-                <option value="2" {% if request.args.get('sucursal') == '2' %}selected{% endif %}>Sucursal 2</option>
-                <option value="3" {% if request.args.get('sucursal') == '3' %}selected{% endif %}>Sucursal 3</option>
+                {% for s in sucursales_disponibles %}
+                <option value="{{ s.id_sucursal }}" {% if s.id_sucursal|string == request.args.get('sucursal') %}selected{% endif %}>{{ s }}</option>
+                    {{ s.nombre }}
+                {% endfor %}
             </select>
         </div>
         <div class="filter-group">
@@ -64,16 +65,14 @@
         {% endfor %}
     </div>
     <div class="pagination">
-            {% set page_num = request.args.get('page', 1)|int %}
-            
-            {% if page_num > 1 %}
-                <a href="{{ url_for('main.index', genero=request.args.get('genero'), sucursal=request.args.get('sucursal'), fecha=request.args.get('fecha'), page=page_num-1) }}" class="btn btn-outline">Anterior</a>
+            {% if pagina > 1 %}
+                <a href="{{ url_for('main.index', genero=request.args.get('genero'), sucursal=request.args.get('sucursal'), fecha=request.args.get('fecha'), pagina=pagina-1) }}" class="btn btn-outline">Anterior</a>
             {% endif %}
             
-            <span class="pagination-info">Página {{ page_num }}</span>
+            <span class="pagination-info">Página {{ pagina }}</span>
             
             {% if peliculas|length > 0 %}
-                <a href="{{ url_for('main.index', genero=request.args.get('genero'), sucursal=request.args.get('sucursal'), fecha=request.args.get('fecha'), page=page_num+1) }}" class="btn btn-outline">Siguiente</a>
+                <a href="{{ url_for('main.index', genero=request.args.get('genero'), sucursal=request.args.get('sucursal'), fecha=request.args.get('fecha'), pagina=pagina+1) }}" class="btn btn-outline">Siguiente</a>
             {% endif %}
         </div>
     {% elif error %}
